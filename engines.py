@@ -352,3 +352,19 @@ RO_XLR99 = KPart("RO-XLR99", "XLR99 Spaceplane Engine", "LOX/Ammonia gas generat
                 is_conf=RP0Conf, engine_configs=[XLR99],
                 ecms=['XLR99'], tags=[LqdTurbo])
 NP_lfe_25m_Orbitalbertha_Mini = RO_XLR99.clone("NP_lfe_25m_Orbitalbertha_Mini", mod=FASA)
+
+# H-1
+H_1_SaturnI = EngineConfig("H-1-SaturnI", 0, (5000, 'H1-TP'), year=1961, category=Orbital, description="Used on Saturn I")
+H_1_SaturnIB = EngineConfig("H-1-SaturnIB", 10, (14000, 'H-1-SaturnI'), year=1965, category=Orbital, description="Uprated H-1 as used on the Saturn IB vehicle.")
+RS_27 = EngineConfig("RS-27", 1, (1000, 'RS27-System'), year=1974, category=Orbital, description="Remanufactured H-1 for use with Delta")
+RS_27A = EngineConfig("RS-27A", 50, (6000, 'RS-27'), year=1989, category=Orbital, description="RS-27 with a higher expansion nozzle for Delta II")
+RO_H1_RS27 = KPart("RO-H1-RS27", "H-1/RS-27 Series", "The H-1 is an upgrade to the LR79 engine that propelled the Saturn-I and IB vehicles, as well as late-model Delta rockets (as the RS-27). The H-1/RS-27 are optimized for the first-stage main engine role. The RS-27A has a higher expansion ratio for increased performance at altitude since liftoff thrust on the Delta II is augmented by solid boosters and the core burns rather longer. Diameter: [1.0 m]. Plume configured by RealPlume.",
+                200, 4000,
+                mod=StockRO, year=1961, category=Orbital,
+                is_conf=RP0Conf, engine_configs=[H_1_SaturnI, H_1_SaturnIB, RS_27, RS_27A],
+                ecms=['H-1-SaturnI'], tags=[LqdTurbo])
+FASAApolloLFEH1 = RO_H1_RS27.clone("FASAApolloLFEH1", mod=FASA)
+RSBengineH1 = RO_H1_RS27.clone("RSBengineH1", mod=RSB)
+bluedog_Delta2_RS27 = RO_H1_RS27.clone("bluedog_Delta2_RS27", mod=BDB)
+SSTU_SC_ENG_H1 = RO_H1_RS27.clone("SSTU-SC-ENG-H1", mod=SSTU)
+KW2mengineMaverickV = RO_H1_RS27.clone("KW2mengineMaverickV", mod=KWRocketry)
