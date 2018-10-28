@@ -296,7 +296,7 @@ rn_x405_vernier = KPart("rn_x405_vernier", "Vanguard X-405 Turbopump Exhaust Jet
 XLR81_BA_5 = EngineConfig("XLR81-BA-5", 0, (12000, 'Navaho-PhaseIII-TP'), year=1959, category=Orbital, description="Agena A")
 XLR81_BA_7 = EngineConfig("XLR81_BA_7", 100, (10000, 'PumpReignition', 'XLR81-BA-5'), year=1961, category=Orbital, description="Agena B")
 XLR81_BA_11 = EngineConfig("XLR81-BA-11", 80, (20000, 'XLR81-BA-7'), year=1962, category=Orbital, description="Agena D")
-XLR81_BA_13 = EngineConfig("XLR81-BA-13", 300, (50000, 'XLR11-BA-11'), year=1965, category=Orbital, description="Model 8247, Gemini ATV")
+XLR81_BA_13 = EngineConfig("XLR81-BA-13", 300, (50000, 'XLR81-BA-11'), year=1965, category=Orbital, description="Model 8247, Gemini ATV")
 Model8096_39 = EngineConfig("Model8096-39", 300, 12000, year=1965, category=Orbital, description="Improved propellant (HDA)")
 Model8096A = EngineConfig("Model8096A", 325, 25000, year=1967, category=Orbital, description="Higher expansion ratio nozzle")
 Model8096L = EngineConfig("Model8096L", 350, 35000, year=1987, category=Orbital, description="Reusable Agena for STS")
@@ -334,3 +334,21 @@ LargeOMS = KPart("LargeOMS", "Astris", "German pressure-fed vacuum engine burnin
                 mod=VSR, year=1968, category=Orbital,
                 is_conf=RP0Conf, engine_configs=[AstrisI, AstrisII],
                 ecms=['AstrisI'], tags=[LqdPF, Toxic])
+
+# XLR11
+XLR11 = EngineConfig("XLR11", 0, 5000, year=1947, category=Orbital, description="Used on X-1")
+X1_Engine = KPart("X1_Engine", "XLR11", "While it doesn't look a thing like it, this model represents the Reaction Motors XLR11, the first liquid fueled rocket engine designed for airplanes. Powered the X-1. Diameter: [0.46 m]. Plume configured by RealPlume.",
+                250, 3000,
+                mod=Taerobee, year=1947, category=Orbital,
+                is_conf=RP0Conf, engine_configs=[XLR11],
+                ecms=['XLR11'], tags=[LqdPF])
+FASAGemini4X800Mini = X1_Engine.clone("FASAGemini4X800Mini", mod=FASA)
+
+# XLR99
+XLR99 = EngineConfig("XLR99", 0, (50000, 'XLR11'), year=1959, category=Orbital, description="Used on X-15")
+RO_XLR99 = KPart("RO-XLR99", "XLR99 Spaceplane Engine", "LOX/Ammonia gas generator engine which powered the X-15 spaceplane. The first large, throttleable, restartable liquid fuel rocket engine. Diameter: [1.42 m]. Plume configured by RealPlume.",
+                1130, 44000,
+                mod=StockRO, year=1959, category=Orbital,
+                is_conf=RP0Conf, engine_configs=[XLR99],
+                ecms=['XLR99'], tags=[LqdTurbo])
+NP_lfe_25m_Orbitalbertha_Mini = RO_XLR99.clone("NP_lfe_25m_Orbitalbertha_Mini", mod=FASA)
