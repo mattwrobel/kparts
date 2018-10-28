@@ -315,3 +315,22 @@ Agena SPS in unlocked in the RCS tech nodes so should be in the RCS config
 
 AgenaSPS = EngineConfig("AgenaSPS", 0, 0, year=1959, category=Orbital, description="")
 '''
+
+# Vexin
+Vesta_sounding_rocket = EngineConfig("Vesta_sounding_rocket", 0, 0, year=1964, category=Orbital, description="")
+Vexin = EngineConfig("Vexin", 0, 0, year=1965, category=Orbital, description="Used on Diamant")
+Valois = EngineConfig("Valois", 0, 0, year=1970, category=Orbital, description="Used on Diamant")
+bluedog_Diamant_Vexin = KPart("bluedog_Diamant_Vexin", "Vexin", "",
+                500, 8000,
+                mod=BDB, year=1964, category=Orbital,
+                is_conf=RP0Conf, engine_configs=[Vesta_sounding_rocket],
+                ecms=['Vesta_sounding_rocket'], tags=[LqdPF, Toxic])
+
+# Astris
+AstrisI = EngineConfig("AstrisI", 0, 0, year=1968, category=Orbital, description="Used on Europa I")
+AstrisII = EngineConfig("AstrisII", 50, 0, year=1971, category=Orbital, description="Used on Europa II")
+LargeOMS = KPart("LargeOMS", "Astris", "German pressure-fed vacuum engine burning Aerozine50 and NTO. Used on the stage of the same name on the Europa I and II launch vehicles. Diameter: [2.0 m]. Plume configured by RealPlume.",
+                300, 6000,
+                mod=VSR, year=1968, category=Orbital,
+                is_conf=RP0Conf, engine_configs=[AstrisI, AstrisII],
+                ecms=['AstrisI'], tags=[LqdPF, Toxic])
