@@ -4,12 +4,15 @@ from kpart import *
 
 # These will probably need to live in a central file of their own & be imported into these parts files
 BDB              = KMod("Bluedog DB")
+ChakaMonkey      = KMod("Chaka Monkey")
 FASA             = KMod("FASA")
+KWRocketry       = KMod("KW Rocketry")
 RealEngines      = KMod("RealEngines")
 RNUSRockets      = KMod("RN US Rockets")
 RO_Extended      = KMod("RO-Extended")
 RSB              = KMod("Real Scale Boosters")
 StockRO          = KMod("Stock (RO Config)")
+SSTU             = KMod("SSTU")
 SSTU_RO_Addition = KMod("SSTU (RO Addition)")
 SXT              = KMod("SXT")
 Taerobee         = KMod("Taerobee")
@@ -83,20 +86,96 @@ taerobee_aerobee = ROAerobeeSustainer.clone("taerobee_aerobee",
 # AJ10_Early
 AJ10_37 = EngineConfig("AJ10-37", 0, (8000, 'AJ10-27'), year=1956, category=Orbital, description="Used on Vanguard second stage.")
 AJ10_42 = EngineConfig("AJ10-42", -15, (2000, 'AJ10-37'), year=1958, category=Orbital, description="Used on Able I")
+AJ10_101A = EngineConfig("AJ10-101A", 1, (1000, 'AJ10-42'), year=1959, category=Orbital, description="Used on Able II on Thor and Atlas.")
+AJ10_142 = EngineConfig("AJ10-142", 1, (1500, 'AJ10-42'), year=1960, category=Orbital, description="Used on Thor-Delta")
 AJ10_118 = EngineConfig("AJ10-118", -30, (1000, 'AJ10-142'), year=1962, category=Orbital, description="Used on Delta A")
-# ... TODO more ...
+AJ10_118D = EngineConfig("AJ10-118D", 10, (5000, 'AJ10-118'), year=1962, category=Orbital, description="Used on Delta B-D")
 SXTAJ10 = KPart("SXTAJ10", "AJ10 Series (Early)", "Small pressure-fed hypergolic upper stage engine. Derivative of the first US liquid rocket engine, the AJ10 series is perhaps the longest-lived of any engine series, a part of the US's first satellite launch vehicle, Vanguard, the Apollo CSM, and even one projected Orion service module. This is the original Vanguard second stage / Able / Delta configuration, without restart capability. Plume configured by RealPlume.",
                 150, 3000,
                 mod=SXT, year=1956, category=Orbital,
-                is_conf=RP0Conf, engine_configs=[AJ10_37, AJ10_42], # ... TODO more ...
+                is_conf=RP0Conf, engine_configs=[AJ10_37, AJ10_42, AJ10_101A, AJ10_142, AJ10_118, AJ10_118D],
                 ecms=['AJ10-37'], tags=[LqdPF, Toxic])
 bluedog_ableEngine = SXTAJ10.clone("bluedog_ableEngine", mod=BDB)
 SSTU_AJ10_CustomEarly = SXTAJ10.clone("SSTU-AJ10-CustomEarly", mod=SSTU_RO_Addition)
+rn_aj10_37 = SXTAJ10.clone("rn_aj10_37", mod=RNUSRockets)
+REP_AJ10_37 = SXTAJ10.clone("AJ10_37", mod=RealEngines)
 
 SHIP_AJ_10_101_104 = KPart("SHIP_AJ_10_101_104", "AJ-10 101/104", "Flown on the Able, and AbleStar upper stages. Use the 10-101 with the Able upper stage, and the 10-104 with the AbleStar upper stage.",
                 None, None,
                 mod=RO_Extended, year=1959, category=Orbital,
                 is_conf=ROConf, tags=[LqdPF, Toxic])
+
+# AJ10_Mid
+AJ10_104 = EngineConfig("AJ10-104", 0, (25000, 'AJ10-101A'), year=1960, category=Orbital, description="Used on Ablestar")
+AJ10_118E = EngineConfig("AJ10-118E", -25, (5000, 'AJ10-104', 'AJ10-118D'), year=1965, category=Orbital, description="Used on Delta E-N")
+SXTAJ10Mid = KPart("SXTAJ10Mid", "AJ10 Series (Mid)", "Small pressure-fed hypergolic upper stage engine. Derivative of the first US liquid rocket engine, the AJ10 series is perhaps the longest-lived of any engine series, a part of the US's first satellite launch vehicle, Vanguard, the Apollo CSM, and even one projected Orion service module. This represents mid-period AJ10s with a nozzle extension and restart capability. Used on Thor-Ablestar and Delta E through Delta N. Plume configured by RealPlume.",
+                250, 5000,
+                mod=SXT, year=1961, category=Orbital,
+                is_conf=RP0Conf, engine_configs=[AJ10_104, AJ10_118E],
+                ecms=['AJ10-104'], tags=[LqdPF, Toxic])
+bluedog_ablestarEngine = SXTAJ10Mid.clone("bluedog_ablestarEngine", mod=BDB)
+SSTU_AJ10_CustomMid = SXTAJ10Mid.clone("SSTU-AJ10-CustomMid", mod=SSTU_RO_Addition)
+rn_aj10_104 = SXTAJ10Mid.clone("rn_aj10_104", mod=RNUSRockets)
+REP_AJ10_104 = SXTAJ10Mid.clone("AJ10_104", mod=RealEngines)
+
+# AJ10_Adv
+AJ10_138 = EngineConfig("AJ10-138", 0, 0, year=1964, category=Orbital, description="Used on Transtage")
+AJ10_118F = EngineConfig("AJ10-118F", 50, 5000, year=1972, category=Orbital, description="Used on Delta 1000")
+AJ10_118K = EngineConfig("AJ10-118K", 100, 15000, year=1989, category=Orbital, description="Used on Delta II")
+SXTAJ10Adv = KPart("SXTAJ10Adv", "AJ10 Series (Advanced)", "Small pressure-fed hypergolic upper stage engine. Derivative of the first US liquid rocket engine, the AJ10 series is perhaps the longest-lived of any engine series, a part of the US's first satellite launch vehicle, Vanguard, the Apollo CSM, and even one projected Orion service module. This represents advanced era AJ10s with a nozzle extension and restart capability. Used on Transtage as AJ10-138; similar models but back with the -118 designation were used on the Delta F and Delta K upper stages. Plume configured by RealPlume.",
+                300, 6000,
+                mod=SXT, year=1964, category=Orbital,
+                is_conf=RP0Conf, engine_configs=[AJ10_104, AJ10_118E],
+                ecms=['AJ10-118F'], tags=[LqdPF, Toxic])
+bluedog_DeltaK_AJ10 = SXTAJ10Adv.clone("bluedog_DeltaK_AJ10", mod=BDB)
+SSTU_AJ10_CustomAdvanced = SXTAJ10Adv.clone("SSTU-AJ10-CustomAdvanced", mod=SSTU_RO_Addition)
+
+KW1mengineVestaVR1 = SXTAJ10Adv.clone("KW1mengineVestaVR1", mod=KWRocketry)
+bluedog_Titan_TranstageEngine = SXTAJ10Adv.clone("bluedog_Titan_TranstageEngine", title="AJ10-138 (x2)", description="Originally developed for Vanguard and Able. Two used, thrust uprated from 3540 kgf to 3628 kgf, with higher specific impulse, in Transtage. Diameter: [1.53 m].",
+                cost=600, mod=BDB,
+                engine_configs=[AJ10_138], ecms=['AJ10-138'])
+
+FASAGeminiLFECentarTwin = KPart("FASAGeminiLFECentarTwin", "AJ10-138", "This can be an upper stage / orbital taxi for various Titan III configurations. Uses 2x AJ10-138. Plume configured by RealPlume.",
+                4300, 86000,
+                mod=FASA, year=1964, category=Orbital,
+                is_conf=RP0Conf, engine_configs=[AJ10_138],
+                ecms=['AJ10-138'], tags=[LqdPF, Toxic])
+
+# AJ10-137
+AJ10_137 = EngineConfig("AJ10-137", 0, 0, year=1968, category=Orbital, description="Used on the Apollo Service Module as the Service Propulsion System.")
+ROAJ10_137 = KPart("ROAJ10-137", "AJ10-137 (Service Propulsion System)", "The Aerojet AJ10-137 rocket engine used on the Apollo Service Module as the Service Propulsion System. Diameter: [3.9 m]. Plume configured by RealPlume.",
+                700, 24500,
+                mod=StockRO, year=1968, category=Orbital,
+                is_conf=RP0Conf, engine_configs=[AJ10_137],
+                ecms=['AJ10-137'], tags=[LqdPF, Toxic])
+bluedog_Apollo_Block2_ServiceEngine = ROAJ10_137.clone("bluedog_Apollo_Block2_ServiceEngine", mod=BDB)
+FASAApollo_SM_Engine = ROAJ10_137.clone("FASAApollo_SM_Engine", mod=FASA)
+SSTU_SC_ENG_AJ10_137 = ROAJ10_137.clone("SSTU-SC-ENG-AJ10-137", mod=SSTU)
+KW2mengineSPS = ROAJ10_137.clone("KW2mengineSPS", mod=KWRocketry)
+REP_AJ10_137 = ROAJ10_137.clone("AJ10_137", mod=RealEngines)
+
+'''
+category Command is not defined - we should move this config to the Capsules
+config file
+
+SSTU_SC_B_SM = KPart("SSTU-SC-B-SM", "Apollo Service Module", "The Apollo Service Module. Contains fuel, RCS, ECS, fuel cell, and batteries. This has RCS pods built in.",
+                10000, 350000,
+                mod=SSTU, year=1968, category=Command,
+                is_conf=RP0Conf, engine_configs=[AJ10_137],
+                ecms=['AJ10-137'], tags=[LqdPF, Toxic])
+'''
+
+# AJ10-190
+AJ10_190_OMS = EngineConfig("AJ10-190-OMS", 0, 0, year=1981, category=Orbital, description="Used as the Space Shuttle OMS")
+AJ10_190_Orion = EngineConfig("AJ10-190-Orion", 0, 0, year=2023, category=Orbital, description="Used as the Orion SPS")
+omsEngine = KPart("omsEngine", "AJ10-190", "Low thrust pressure-fed hypergolic engine. It was used on the Space Shuttle for orbital insertion, maneuvering and deorbiting. Currently used by the Orion MPCV. Diameter: [1.17 m]. Plume configured by RealPlume.",
+                400, 8000,
+                mod=StockRO, year=1981, category=Orbital,
+                is_conf=RP0Conf, engine_configs=[AJ10_190_OMS, AJ10_190_Orion],
+                ecms=['AJ10-190'], tags=[LqdPF, Toxic])
+REP_AJ10_190 = omsEngine.clone("AJ10_190", mod=RealEngines)
+SSTU_SC_ENG_AJ10_190 = omsEngine.clone("SSTU-SC-ENG-AJ10-190", mod=SSTU)
+CHAKAOME2 = omsEngine.clone("CHAKAOME2", mod=ChakaMonkey)
 
 # Gamma family (British HTP/kero, Black Arrow)
 Gamma2Config = EngineConfig("Gamma-2", 0, (4000, 'GammaTP'), year=1956, category=Orbital)
