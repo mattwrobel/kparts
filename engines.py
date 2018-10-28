@@ -274,3 +274,21 @@ rd100 = KPart("rd100", "RD-100 Series (Early)", "The RD-100 engine series were t
                 is_conf=RP0Conf, engine_configs=[RD100Config, RD102, RD103, RD103M],
                 ecms=['RD-100'], tags=[LqdTurbo])
 LVT15 = rd100.clone("LVT15", mod=VSR)
+
+# X-405
+X_405 = EngineConfig("X-405", 0, (12000, 'Navaho-PhaseIII-TP'), year=1956, category=Orbital, description="Used on Vanguard first stage.")
+X_405H = EngineConfig("X-405H", 100, (10000, 'PumpReignition', 'X-405'), year=1959, category=Orbital, description="Engine for proposed Vega stage for NASA Atlas-Vega LV. Superceded by Atlas-Agena once NASA became aware of the USAF's Agena stage.")
+SXTX405 = KPart("SXTX405", "Vanguard X-405 (XLR50-GE-2)", "A very early kerolox gas generator booster engine used on the Vanguard launch vehicle. Diameter: 1.0 m. Plume configured by RealPlume.",
+                400, 12000,
+                mod=SXT, year=1957, category=Orbital,
+                is_conf=RP0Conf, engine_configs=[X_405, X_405H],
+                ecms=['X-405'], tags=[LqdTurbo])
+bluedog_vanguardEngine = SXTX405.clone("bluedog_vanguardEngine", mod=BDB)
+rn_x405 = SXTX405.clone("rn_x405", mod=RNUSRockets)
+
+rn_x405_vernier = KPart("rn_x405_vernier", "Vanguard X-405 Turbopump Exhaust Jet", "First stage vernier engine used on the Vanguard launch vehicle. Plume configured by RealPlume.",
+                25, 500,
+                mod=RNUSRockets, year=1957, category=Orbital,
+                is_conf=RP0Conf,
+                ecms=['X-405'], tags=[LqdTurbo])
+
