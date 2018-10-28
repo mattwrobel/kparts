@@ -308,7 +308,9 @@ RO_AgenaEngine = KPart("RO-AgenaEngine", "XLR81 (Agena) Vacuum Engine", "Gas-gen
 FASAAgena_Engine = RO_AgenaEngine.clone("FASAAgena_Engine", mod=FASA)
 RSBengineXLR81 = RO_AgenaEngine.clone("RSBengineXLR81", mod=RSB)
 SSTU_SC_ENG_LR81_8048 = RO_AgenaEngine.clone("SSTU-SC-ENG-LR81-8048", title="XLR81 Agena A/B Vacuum Engine", mod=SSTU, engine_configs=[XLR81_BA_5, XLR81_BA_7])
-SSTU_SC_ENG_LR81_8096 = RO_AgenaEngine.clone("SSTU-SC-ENG-LR81-8096", title="XLR81 Agena D Vacuum Engine", mod=SSTU, engine_configs=[XLR81_BA_11, XLR81_BA_13, Model8096_39, Model8096A, Model8096L], not_identical=True)
+SSTU_SC_ENG_LR81_8096 = RO_AgenaEngine.clone("SSTU-SC-ENG-LR81-8096", title="XLR81 Agena D Vacuum Engine", cost=280, entry_cost=37000, mod=SSTU, engine_configs=[XLR81_BA_11, XLR81_BA_13, Model8096_39, Model8096A, Model8096L], not_identical=True)
+bluedog_AgenaA = RO_AgenaEngine.clone("bluedog_AgenaA", title="Agena-A/B Flight Pack", description="Flight Pack RCS for Agena-A and BAC Model 8048/8081 engine.", cost=300, entry_cost=7000, mod=BDB, engine_configs=[XLR81_BA_5, XLR81_BA_7])
+bluedog_AgenaD = RO_AgenaEngine.clone("bluedog_AgenaD", title="Agena-D Flight Pack", description="Flight Pack RCS for Agena-D and BAC Model 8096/8247 engine.", cost=380, entry_cost=37000, mod=BDB, engine_configs=[XLR81_BA_11, XLR81_BA_13, Model8096_39, Model8096A, Model8096L], not_identical=True)
 
 '''
 Agena SPS in unlocked in the RCS tech nodes so should be in the RCS config
