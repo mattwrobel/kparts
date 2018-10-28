@@ -292,3 +292,26 @@ rn_x405_vernier = KPart("rn_x405_vernier", "Vanguard X-405 Turbopump Exhaust Jet
                 is_conf=RP0Conf,
                 ecms=['X-405'], tags=[LqdTurbo])
 
+# Agena
+XLR81_BA_5 = EngineConfig("XLR81-BA-5", 0, (12000, 'Navaho-PhaseIII-TP'), year=1959, category=Orbital, description="Agena A")
+XLR81_BA_7 = EngineConfig("XLR81_BA_7", 100, (10000, 'PumpReignition', 'XLR81-BA-5'), year=1961, category=Orbital, description="Agena B")
+XLR81_BA_11 = EngineConfig("XLR81-BA-11", 80, (20000, 'XLR81-BA-7'), year=1962, category=Orbital, description="Agena D")
+XLR81_BA_13 = EngineConfig("XLR81-BA-13", 300, (50000, 'XLR11-BA-11'), year=1965, category=Orbital, description="Model 8247, Gemini ATV")
+Model8096_39 = EngineConfig("Model8096-39", 300, 12000, year=1965, category=Orbital, description="Improved propellant (HDA)")
+Model8096A = EngineConfig("Model8096A", 325, 25000, year=1967, category=Orbital, description="Higher expansion ratio nozzle")
+Model8096L = EngineConfig("Model8096L", 350, 35000, year=1987, category=Orbital, description="Reusable Agena for STS")
+RO_AgenaEngine = KPart("RO-AgenaEngine", "XLR81 (Agena) Vacuum Engine", "Gas-generator nitric acid/UDMH vacuum engine used on Agena. The XLR81 family was derived from the Bell Hustler Rocket Engine, which was developed for use on an air-to-surface missile. Early engines were nearly identical to the Hustler engine, while later variants offered new capabilities and improved performance. Engine restart was introduced on the Agena B's XLR81-BA-7 (Model 8081). The XLR81-BA-11 (Model 8096) used on Agena D used propellant sumps to eliminate the need for ullage thrust. The XLR81-BA-13 (Model 8247) powered the Gemini Agena Target Vehicle (a modified Agena D) and was rated for up to 14 restarts. Diameter: [0.9 m]. Plume configured by RealPlume.",
+                200, 7000,
+                mod=VSR, year=1959, category=Orbital,
+                is_conf=RP0Conf, engine_configs=[XLR81_BA_5, XLR81_BA_7, XLR81_BA_11, XLR81_BA_13, Model8096_39, Model8096A, Model8096L],
+                ecms=['XLR81-BA-5'], tags=[LqdTurbo, Toxic])
+FASAAgena_Engine = RO_AgenaEngine.clone("FASAAgena_Engine", mod=FASA)
+RSBengineXLR81 = RO_AgenaEngine.clone("RSBengineXLR81", mod=RSB)
+SSTU_SC_ENG_LR81_8048 = RO_AgenaEngine.clone("SSTU-SC-ENG-LR81-8048", title="XLR81 Agena A/B Vacuum Engine", mod=SSTU, engine_configs=[XLR81_BA_5, XLR81_BA_7])
+SSTU_SC_ENG_LR81_8096 = RO_AgenaEngine.clone("SSTU-SC-ENG-LR81-8096", title="XLR81 Agena D Vacuum Engine", mod=SSTU, engine_configs=[XLR81_BA_11, XLR81_BA_13, Model8096_39, Model8096A, Model8096L], not_identical=True)
+
+'''
+Agena SPS in unlocked in the RCS tech nodes so should be in the RCS config
+
+AgenaSPS = EngineConfig("AgenaSPS", 0, 0, year=1959, category=Orbital, description="")
+'''
