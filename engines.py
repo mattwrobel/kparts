@@ -3,6 +3,7 @@
 from kpart import *
 
 # These will probably need to live in a central file of their own & be imported into these parts files
+AIES             = KMod("AIES")
 BDB              = KMod("Bluedog DB")
 ChakaMonkey      = KMod("Chaka Monkey")
 FASA             = KMod("FASA")
@@ -262,6 +263,53 @@ bluedog_Atlas_LR105 = KPart("bluedog_Atlas_LR105", "LR105 Series", "Kerolox gas-
                 ecms=['LR43-NA-3'], tags=[LqdTurbo])
 FASAMercuryAtlasEng = bluedog_Atlas_LR105.clone("FASAMercuryAtlasEng", mod=FASA)
 liquidEngine = bluedog_Atlas_LR105.clone("liquidEngine", mod=StockRO)
+
+# LR83 booster
+LR83_NA_1 = EngineConfig("LR83-NA-1", 0, 0, year=1958, category=Orbital, description="")
+
+# LR87 Titan first stage
+LR87_AJ_3 = EngineConfig("LR87-AJ-3", 0, (20000, 'AJTitan'), year=1959, category=Orbital, description="")
+LR87_AJ_5 = EngineConfig("LR87-AJ-5", 130, (2000, 'AJTitan-5'), year=1962, category=Orbital, description="")
+LR87_AJ_7 = EngineConfig("LR87-AJ-7", 150, (2000, 'AJTitan-7'), year=1964, category=Orbital, description="")
+LR87_AJ_9 = EngineConfig("LR87-AJ-9", 150, (2000, 'AJTitan-9'), year=1965, category=Orbital, description="")
+LR87_AJ_9_Kero = EngineConfig("LR87-AJ-9-Kero", 950, 28000, year=1965, category=Orbital, description="")
+LR87_AJ_9_Kero_15AR = EngineConfig("LR87-AJ-9-Kero-15AR", 950, 28000, year=1965, category=Orbital, description="")
+LR87_AJ_11 = EngineConfig("LR87-AJ-11", 140, (2000, 'AJTitan-11'), year=1970, category=Orbital, description="")
+LR87_AJ_11A = EngineConfig("LR87-AJ-11A", 140, (2000, 'AJTitan-11A'), year=1972, category=Orbital, description="")
+FASAGeminiLR87Twin = KPart("FASAGeminiLR87Twin", "LR87 Booster", "Used in the first stage of the Titan rocket family, the LR87 is composed of two engines with separate turbomachinery integrated into one unit. The version used on Titan I burned kerosene and liquid oxygen, while Titan II through Titan IV burned storable propellants. A modified version burning liquid hydrogen was developed for the upper stages of Saturn V and Saturn IB, but the J-2 was selected instead. Diameter: [3.0 m]. Plume configured by RealPlume.",
+                500, 10000,
+                mod=FASA, year=1959, category=Orbital,
+                is_conf=RP0Conf, engine_configs=[LR87_AJ_3, LR87_AJ_5, LR87_AJ_7, LR87_AJ_9, LR87_AJ_9_Kero, LR87_AJ_9_Kero_15AR, LR87_AJ_11, LR87_AJ_11A],
+                ecms=['LR87-AJ-3'], tags=[LqdTurbo])
+rn_lr87_11 = FASAGeminiLR87Twin.clone("rn_lr87_11", mod=RNUSRockets)
+SHIP_LR_87_3579 = FASAGeminiLR87Twin.clone("SHIP_LR_87_3579", mod=RO_Extended)
+bluedog_LR87_mod1 = FASAGeminiLR87Twin.clone("bluedog_LR87_mod1", mod=BDB)
+liquidEngineprodulVR2 = FASAGeminiLR87Twin.clone("liquidEngineprodulVR2", mod=AIES)
+
+# LR91 Titan second stage
+LR91_AJ_3 = EngineConfig("LR91-AJ-3", 0, (20000, 'AJTitan'), year=1959, category=Orbital, description="")
+LR91_AJ_5 = EngineConfig("LR91-AJ-5", 100, (2000, 'AJTitan-5'), year=1962, category=Orbital, description="")
+LR91_AJ_7 = EngineConfig("LR91-AJ-7", 120, (2000, 'AJTitan-7'), year=1964, category=Orbital, description="")
+LR91_AJ_9 = EngineConfig("LR91-AJ-9", 100, (2000, 'AJTitan-9'), year=1965, category=Orbital, description="")
+LR91_AJ_9_Kero = EngineConfig("LR91-AJ-9-Kero", 100, 28000, year=1965, category=Orbital, description="")
+LR91_AJ_11 = EngineConfig("LR91-AJ-11", 110, (2000, 'AJTitan-11'), year=1971, category=Orbital, description="")
+LR91_AJ_11A = EngineConfig("LR91-AJ-11A", 110, (2000, 'AJTitan-11A'), year=1983, category=Orbital, description="")
+FASAGeminiLR91 = KPart("FASAGeminiLR91", "LR91 Series", "The LR91 powered the second stage of Titan launchers. Exhaust from the gas generator provided roll control. Diameter: [2.9 m]. Plume configured by RealPlume.",
+                250, 5000,
+                mod=FASA, year=1959, category=Orbital,
+                is_conf=RP0Conf, engine_configs=[LR91_AJ_3, LR91_AJ_5, LR91_AJ_7, LR91_AJ_9, LR91_AJ_9_Kero, LR91_AJ_11, LR91_AJ_11A],
+                ecms=['LR91-AJ-3'], tags=[LqdTurbo])
+FASAGeminiLR91Mini = FASAGeminiLR91.clone("FASAGeminiLR91Mini", mod=FASA)
+rn_lr91_11  = FASAGeminiLR91.clone("rn_lr91_11", mod=RNUSRockets)
+bluedog_LR91_mod1 = FASAGeminiLR91.clone("bluedog_LR91_mod1", mod=BDB)
+bluedog_LR91_mod2 = FASAGeminiLR91.clone("bluedog_LR91_mod2", mod=BDB)
+liquidEngineorbit2 = FASAGeminiLR91.clone("liquidEngineorbit2", mod=AIES)
+
+rn_lr91_11_tp = KPart("rn_lr91_11_tp", "LR-91 Turbopump Exhaust Vernier", "The upper stage vernier for the Titan I through Titan IV series of rockets. Plume configured by RealPlume.",
+                50, 1000,
+                mod=RNUSRockets, year=1959, category=Orbital,
+                is_conf=RP0Conf,
+                ecms=['LR91-AJ-3'], tags=[LqdTurbo])
 
 # RD-100 series
 RD100Config = EngineConfig("RD-100", 0, 0, year=0, category=Orbital)
