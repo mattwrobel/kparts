@@ -168,7 +168,7 @@ SSTU_SC_B_SM = KPart("SSTU-SC-B-SM", "Apollo Service Module", "The Apollo Servic
 
 # AJ10-190
 AJ10_190_OMS = EngineConfig("AJ10-190-OMS", 0, 0, year=1981, category=Orbital, description="Used as the Space Shuttle OMS")
-AJ10_190_Orion = EngineConfig("AJ10-190-Orion", 0, 0, year=2023, category=Orbital, description="Used as the Orion SPS")
+AJ10_190_Orion = EngineConfig("AJ10-190-Orion", 0, 0, year=2018, category=Orbital, description="Used as the Orion SPS")
 omsEngine = KPart("omsEngine", "AJ10-190", "Low thrust pressure-fed hypergolic engine. It was used on the Space Shuttle for orbital insertion, maneuvering and deorbiting. Currently used by the Orion MPCV. Diameter: [1.17 m]. Plume configured by RealPlume.",
                 400, 8000,
                 mod=StockRO, year=1981, category=Orbital,
