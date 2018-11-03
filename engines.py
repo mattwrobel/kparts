@@ -370,3 +370,29 @@ RSBengineH1 = RO_H1_RS27.clone("RSBengineH1", mod=RSB)
 bluedog_Delta2_RS27 = RO_H1_RS27.clone("bluedog_Delta2_RS27", mod=BDB)
 SSTU_SC_ENG_H1 = RO_H1_RS27.clone("SSTU-SC-ENG-H1", mod=SSTU)
 KW2mengineMaverickV = RO_H1_RS27.clone("KW2mengineMaverickV", mod=KWRocketry)
+
+# E-1
+E_1 = EngineConfig("E-1", 0, (25000, 'E1-TP'), year=1963, category=Orbital, description="")
+E_1_Upgrade = EngineConfig("E-1-Upgrade", 50, (20000, 'E-1'), year=1973, category=Orbital, description="Speculative upgrade configuration for the E-1.")
+RO_E1 = KPart("RO-E1", "E-1", "Pump-fed kerolox open cycle (gas generator) booster engine developed from LR79/89. Backup proposal for the first stage engine on the Titan 1 ICBM, and proposed first stage engine on the Saturn 1 but ultimately never flown (4 E-1s replaced with 8 H-1s). Diameter: [2.14 m]. Plume configured by RealPlume.",
+                1300, 60000,
+                mod=StockRO, year=1963, category=Orbital,
+                is_conf=RP0Conf, engine_configs=[E_1, E_1_Upgrade],
+                ecms=['E-1'], tags=[LqdTurbo])
+FASAE1 = RO_E1.clone("FASAE1", mod=FASA)
+SHIP_E1 = RO_E1.clone("SHIP_E1", mod=RO_Extended)
+
+# F-1
+F_1 = EngineConfig("F-1", 0, (400000, 'E1-TP'), year=1967, category=Orbital, description="Used on Saturn V")
+F_1A = EngineConfig("F-1A", -800, (150000, 'F-1'), year=1977, category=Orbital, description="")
+F_1A_ETS = EngineConfig("F-1A_ETS", -800, ('F-1A'), year=1977, category=Orbital, description="ETS Saturn IC")
+F_1B = EngineConfig("F-1B", 0, (100000, 'F-1A'), year=2022, category=Orbital, description="SLS Pyrios")
+Size3AdvancedEngine = KPart("Size3AdvancedEngine", "F-1 Series", "The massive Rocketdyne F-1 engine. One of the largest, most powerful rocket engines ever built. Ensure you enable roll capability or disable gimbal as required for your application. Diameter: [3.61 m]. Plume configured by RealPlume.",
+                4555, 409361,
+                mod=StockRO, year=1967, category=Orbital,
+                is_conf=RP0Conf, engine_configs=[F_1, F_1A, F_1A_ETS, F_1B],
+                ecms=['F-1'], tags=[LqdTurbo])
+FASAApolloLFEF1 = Size3AdvancedEngine.clone("FASAApolloLFEF1", mod=FASA)
+RSBengineF1 = Size3AdvancedEngine.clone("RSBengineF1", mod=RSB)
+KW5mengineGriffonC = Size3AdvancedEngine.clone("KW5mengineGriffonC", mod=KWRocketry)
+SSTU_SC_ENG_F1 = Size3AdvancedEngine.clone("SSTU-SC-ENG-F1", mod=SSTU)
