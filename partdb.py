@@ -82,9 +82,9 @@ def make_rftech_levels():
 
 if __name__ == '__main__':
     # Just here for testing.  We'll do something more useful with the data later.
-    print make_tree_parts()
-    print make_tree_engines()
-    print make_ecm_engines()
-    print make_identical_parts()
-    print make_ecm_parts()
-    print make_rftech_levels()
+    print (make_tree_parts())
+    print (make_tree_engines())
+    print (make_ecm_engines())
+    print (make_identical_parts())
+    print (make_ecm_parts())
+    print (make_rftech_levels())
